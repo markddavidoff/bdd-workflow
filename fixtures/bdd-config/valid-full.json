@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "featureFilesDir": "docs/features",
+  "stack": "playwright-bdd",
+  "stepsDir": "tests/bdd/steps",
+  "e2eDir": "tests/e2e",
+  "sourceGlobs": ["src/**/*.ts"],
+  "domainMap": [
+    {
+      "featureFile": "01_shelves.feature",
+      "covers": "Shelf CRUD",
+      "entity": "Shelf",
+      "table": "shelves",
+      "apiPrefix": "/api/shelves"
+    }
+  ],
+  "domainHazards": [
+    {
+      "name": "hidden-item-filter-mismatch",
+      "flags": ["isLent", "skipped"],
+      "description": "Shelf view filters to available books, but the reading-queue position is computed over the full queue including lent-out books."
+    }
+  ]
+}

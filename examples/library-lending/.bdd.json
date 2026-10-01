@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "featureFilesDir": "docs/features",
+  "e2eDir": "tests",
+  "sourceGlobs": ["src/**/*.js"],
+  "domainHazards": [
+    {
+      "name": "hold-queue fairness",
+      "flags": ["holdQueue", "reservedFor", "available"],
+      "description": "A returned copy with an active hold queue must be reserved for the next patron in line, not made generally available."
+    }
+  ]
+}

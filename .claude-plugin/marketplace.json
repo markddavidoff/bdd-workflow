@@ -1,0 +1,75 @@
+{
+  "name": "bdd-workflow",
+  "owner": {
+    "name": "Mark Davidoff"
+  },
+  "metadata": {
+    "description": "BDD workflow toolkit: feature authoring with adversarial edge-case review, KB-backed Gherkin guidance, Playwright spec generation, and multi-persona spec review.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "bdd-flow",
+      "source": "./plugins/bdd-flow",
+      "description": "BDD feature authoring with adversarial edge-case review and Playwright spec generation. Stack-neutral. Optionally consults the bdd-knowledge-base plugin when installed.",
+      "version": "0.1.0",
+      "category": "testing",
+      "keywords": [
+        "bdd",
+        "gherkin",
+        "playwright",
+        "testing",
+        "tdd"
+      ],
+      "license": "LicenseRef-source-available",
+      "homepage": "https://github.com/markddavidoff/bdd-workflow"
+    },
+    {
+      "name": "bdd-knowledge-base",
+      "source": "./plugins/bdd-knowledge-base",
+      "description": "Standalone BDD/Gherkin knowledge-base access: fetch, pin, verify, and query the published reference. No workflow dependency.",
+      "version": "0.1.0",
+      "category": "documentation",
+      "keywords": [
+        "bdd",
+        "gherkin",
+        "knowledge-base",
+        "reference"
+      ],
+      "license": "LicenseRef-source-available",
+      "homepage": "https://github.com/markddavidoff/bdd-workflow"
+    },
+    {
+      "name": "spec-personas",
+      "source": "./plugins/spec-personas",
+      "description": "Multi-persona spec review with MoA synthesis and interactive refinement. Works on any spec, not just BDD.",
+      "version": "0.1.0",
+      "category": "review",
+      "keywords": [
+        "spec-review",
+        "personas",
+        "rfc",
+        "prd",
+        "design-review"
+      ],
+      "license": "LicenseRef-source-available",
+      "homepage": "https://github.com/markddavidoff/bdd-workflow"
+    },
+    {
+      "name": "bdd-scaffold",
+      "source": "./plugins/bdd-scaffold",
+      "description": "Scaffold a BDD-ready project: .bdd.json, feature/step templates, Playwright + CI wiring. Stack-opinionated.",
+      "version": "0.1.0",
+      "category": "testing",
+      "keywords": [
+        "bdd",
+        "scaffold",
+        "playwright-bdd",
+        "gherkin",
+        "bootstrap"
+      ],
+      "license": "LicenseRef-source-available",
+      "homepage": "https://github.com/markddavidoff/bdd-workflow"
+    }
+  ]
+}

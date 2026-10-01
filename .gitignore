@@ -1,0 +1,7 @@
+results/
+node_modules/
+__pycache__/
+*.pyc
+scripts/.domain-blocklist
+.superpowers/
+scripts/.withheld-personas-blocklist

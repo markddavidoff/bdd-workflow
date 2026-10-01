@@ -1,0 +1,10 @@
+{
+  "name": "bdd-knowledge-base",
+  "version": "0.1.0",
+  "description": "Standalone access to a curated BDD/Gherkin knowledge base: fetch, pin, verify, and query the published reference. No workflow dependency.",
+  "author": { "name": "Mark Davidoff" },
+  "homepage": "https://github.com/markddavidoff/bdd-workflow",
+  "repository": "https://github.com/markddavidoff/bdd-workflow",
+  "license": "LicenseRef-source-available",
+  "keywords": ["bdd", "gherkin", "knowledge-base", "reference", "documentation"]
+}

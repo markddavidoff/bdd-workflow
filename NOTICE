@@ -1,0 +1,14 @@
+BDD Workflow
+Copyright (c) 2026 Mark Davidoff.
+
+This product is source-available under the BDD Workflow Source-Available License
+(see LICENSE). It is a personal project and is NOT affiliated with, endorsed by,
+or sponsored by Anthropic, SmartBear, Cucumber (Gherkin), or Microsoft
+(Reqnroll / SpecFlow).
+
+"Gherkin", "Cucumber", "Playwright", "SmartBear", "Reqnroll", and other names are
+the trademarks of their respective owners and are used here only for
+identification and interoperability.
+
+Third-party knowledge-base sources and their licenses are vendored under the
+companion bdd-knowledge-base dataset; see that repository's THIRD_PARTY_LICENSES/.

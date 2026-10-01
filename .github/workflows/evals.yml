@@ -1,0 +1,91 @@
+name: evals
+
+# POC 1: `claude plugin validate` runs unauthenticated on stock ubuntu-latest, so it is safe on
+# fork pull_request (no secret to expose). `claude plugin eval` RUNS a real agent and needs
+# ANTHROPIC_API_KEY, so it must never run on fork pull_request — only on push / dispatch / schedule.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 7 * * *"   # nightly
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    # Unauthenticated structural gate — safe on fork PRs.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Claude CLI
+        run: |
+          curl -fsSL https://claude.ai/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Validate all plugins + marketplace
+        run: |
+          for p in bdd-flow bdd-knowledge-base spec-personas bdd-scaffold; do
+            claude plugin validate "plugins/$p" --strict --json || exit 1
+          done
+          claude plugin validate .claude-plugin/marketplace.json --strict --json
+      - name: "Install-smoke E2E (keyless install of all 4 from local marketplace, no agent run)"
+        run: bash tests/e2e/install-smoke.sh
+
+  smoke-evals:
+    # Free-grader smoke on the two key behaviours. Needs auth -> never on fork pull_request.
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Claude CLI
+        run: |
+          curl -fsSL https://claude.ai/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Smoke suite (trigger + gate)
+        run: |
+          # Repeated --case flags do NOT accumulate (only the last wins), so run one case per
+          # invocation. Verified empirically 2026-09-28.
+          for c in silent-in-plain-repo approval-gate-holds; do
+            claude plugin eval plugins/bdd-flow --case "$c" \
+              --scaffold --runs 1 --threshold 0.9 --max-cost-usd 8 --no-publish --trust-plugin
+          done
+
+  nightly-evals:
+    # Full suite + ablation, LLM graders included. Nightly only.
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Claude CLI
+        run: |
+          curl -fsSL https://claude.ai/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Full suite + ablation
+        run: |
+          # bdd-flow sweep now includes file-writing cases (full-dev-loop, spec-first-enforcement),
+          # so grant the gated tools and give the heavier loop more cost headroom.
+          claude plugin eval plugins/bdd-flow --runs 5 --ablation with-without --scaffold \
+            --threshold 0.8 --max-cost-usd 60 --trust-plugin --no-publish \
+            --allow-tools Write Edit Bash
+      - name: New E2E cases (spec-personas + bdd-knowledge-base)
+        run: |
+          # Repeated --case flags do NOT accumulate (only the last wins), so run one case per
+          # invocation. Verified empirically 2026-09-28.
+          for c in persona-create persona-review; do
+            claude plugin eval plugins/spec-personas --case "$c" \
+              --runs 3 --threshold 0.66 --scaffold --trust-plugin --no-publish \
+              --max-cost-usd 12 --allow-tools Write Edit Bash
+          done
+          # Generic MoA engine (dispatches the moa-synthesizer agent — needs Agent granted).
+          claude plugin eval plugins/spec-personas --case moa-synthesis-general \
+            --runs 3 --threshold 0.66 --scaffold --trust-plugin --no-publish \
+            --max-cost-usd 10 --allow-tools Agent Write
+          claude plugin eval plugins/bdd-knowledge-base --case 'kb-accuracy' \
+            --runs 3 --threshold 0.66 --scaffold --trust-plugin --no-publish --max-cost-usd 10

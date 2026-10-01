@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/markddavidoff/bdd-workflow/schemas/bdd-config.schema.json",
+  "title": "BDD project configuration",
+  "type": "object",
+  "required": ["featureFilesDir"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": 1 },
+    "featureFilesDir": { "type": "string", "description": "Directory containing .feature files" },
+    "newFileNaming": { "type": "string", "default": "NN_<slug>.feature" },
+    "stack": { "enum": ["playwright-bdd", "cucumber-js", "pytest-bdd", "reqnroll", "behave"] },
+    "stepsDir": { "type": "string" },
+    "e2eDir": { "type": "string" },
+    "sourceGlobs": { "type": "array", "items": { "type": "string" } },
+    "domainMap": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "featureFile": { "type": "string" },
+          "file": { "type": "string", "deprecated": true, "description": "Deprecated alias for featureFile" },
+          "covers": { "type": "string" },
+          "entity": { "type": "string" },
+          "table": { "type": "string" },
+          "apiPrefix": { "type": "string" }
+        },
+        "anyOf": [ { "required": ["featureFile"] }, { "required": ["file"] } ]
+      }
+    },
+    "domainHazards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "flags": { "type": "array", "items": { "type": "string" } },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  }
+}

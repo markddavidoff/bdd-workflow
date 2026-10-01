@@ -1,0 +1,13 @@
+{
+  "name": "library-lending-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "description": "playwright-bdd variant of the library-lending BDD example",
+  "scripts": {
+    "test": "bddgen && playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "playwright-bdd": "^9.2.1"
+  }
+}

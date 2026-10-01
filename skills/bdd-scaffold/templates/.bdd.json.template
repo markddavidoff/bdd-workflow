@@ -1,0 +1,11 @@
+{
+  "$schema": "https://github.com/markddavidoff/bdd-workflow/schemas/bdd-config.schema.json",
+  "version": 1,
+  "featureFilesDir": "docs/features",
+  "stack": "playwright-bdd",
+  "stepsDir": "tests/bdd/steps",
+  "e2eDir": "tests/e2e",
+  "sourceGlobs": ["src/**/*.ts"],
+  "domainMap": [],
+  "domainHazards": []
+}

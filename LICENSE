@@ -1,0 +1,45 @@
+BDD Workflow — Source-Available License
+Version 1.0 (2026)
+
+Copyright (c) 2026 Mark Davidoff. All rights reserved.
+
+This is a personal, source-available project. It is NOT open-source software
+under the Open Source Initiative definition, and it is NOT affiliated with,
+endorsed by, or sponsored by Anthropic, SmartBear, Cucumber, Microsoft, or any
+other company.
+
+1. Grant of use. You are granted a non-exclusive, non-transferable, revocable
+   license to install and use this software, in unmodified form, for your own
+   personal or internal purposes. "Internal purposes" includes use by an
+   individual and use within a company or organization, including for commercial
+   work, provided the software itself is not modified or redistributed.
+
+2. Attribution. Any permitted use that PUBLICLY references, cites, or surfaces
+   this software — for example in public documentation, marketing, or a
+   distributed product — must retain this LICENSE and the accompanying NOTICE, and
+   must credit "BDD Workflow by Mark Davidoff
+   (https://github.com/markddavidoff/bdd-workflow)". Private, internal use does not
+   require a visible credit line.
+
+3. No derivative works. You may NOT modify, adapt, translate, or create
+   derivative works of this software, in whole or in part.
+
+4. No redistribution of modified versions. You may not distribute, sublicense,
+   sell, publish, or host altered copies of this software or any derivative work
+   based on it.
+
+5. Reservation of rights. All rights not expressly granted above are reserved by
+   the copyright holder. Forking is discouraged; on public hosting it cannot be
+   technically prevented, only asked against.
+
+6. No warranty. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+7. Limitation of liability. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM,
+   DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
+   OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+   OR OTHER DEALINGS IN THE SOFTWARE.
+
+This software runs shell commands (including network fetches and file removal) on
+your machine. Review it before use. Security disclosures: see SECURITY.md.

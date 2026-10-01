@@ -1,0 +1,10 @@
+{
+  "name": "spec-personas",
+  "version": "0.1.0",
+  "description": "Multi-persona spec review with MoA synthesis and interactive refinement. Works on any spec, not just BDD.",
+  "author": { "name": "Mark Davidoff" },
+  "homepage": "https://github.com/markddavidoff/bdd-workflow",
+  "repository": "https://github.com/markddavidoff/bdd-workflow",
+  "license": "LicenseRef-source-available",
+  "keywords": ["spec-review", "personas", "rfc", "prd", "design-review"]
+}

@@ -1,0 +1,31 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - name: Install bats
+        run: npm install -g bats@1.11.0
+      # Drift check runs FIRST, on the committed tree. It snapshots plugins/, re-syncs
+      # from canonical, and diffs — so it detects committed copies that don't match
+      # canonical. A standalone `make sync` before it would refresh the tree and mask
+      # the drift (the generated copies are committed per CR6, not regenerated in CI).
+      - name: Drift check (committed generated skills == canonical)
+        run: bash scripts/check-drift.sh
+      - name: No absolute paths
+        run: bash scripts/check-no-abs-paths.sh
+      - name: No proprietary domain vocab
+        run: bash scripts/check-no-domain-vocab.sh
+      - name: No withheld persona taxonomy
+        run: bash scripts/check-no-withheld-personas.sh
+      - name: LICENSE and NOTICE present
+        run: test -f LICENSE && test -f NOTICE
+      - name: Schema + unit tests
+        run: bats tests/
+      # 'claude plugin validate --strict' is the authoritative gate but the CLI's
+      # installability in a stock GitHub runner is unconfirmed (POC 1). Until then it
+      # stays a documented local gate: `make validate`. The public CI gate + perf
+      # matrix (SQ4b / H6) is wired in Phase 4' once POC 1 settles stock-vs-self-hosted.

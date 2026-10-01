@@ -1,0 +1,17 @@
+Feature: Example — replace with your first real feature
+
+  A short, plain-language description of the behaviour this file covers. Written for a
+  product owner to read, not an engineer.
+
+  Background:
+    Given the application is running
+
+# ─────────────────────────────────────────────
+# Happy path
+# ─────────────────────────────────────────────
+
+  @smoke
+  Scenario: A visitor sees the landing page
+    Given a visitor opens the home page
+    When  the page finishes loading
+    Then  a welcome message is shown

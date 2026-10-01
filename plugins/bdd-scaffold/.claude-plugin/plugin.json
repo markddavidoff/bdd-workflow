@@ -1,0 +1,10 @@
+{
+  "name": "bdd-scaffold",
+  "version": "0.1.0",
+  "description": "Scaffold a BDD-ready project: .bdd.json, feature/step templates, Playwright + CI wiring. Stack-opinionated.",
+  "author": { "name": "Mark Davidoff" },
+  "homepage": "https://github.com/markddavidoff/bdd-workflow",
+  "repository": "https://github.com/markddavidoff/bdd-workflow",
+  "license": "LicenseRef-source-available",
+  "keywords": ["bdd", "scaffold", "playwright-bdd", "gherkin", "bootstrap"]
+}

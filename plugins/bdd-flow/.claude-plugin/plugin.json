@@ -1,0 +1,18 @@
+{
+  "name": "bdd-flow",
+  "version": "0.1.0",
+  "description": "BDD feature authoring with adversarial edge-case review and Playwright spec generation. Stack-neutral. Optionally consults the bdd-knowledge-base plugin when installed.",
+  "author": {
+    "name": "Mark Davidoff"
+  },
+  "homepage": "https://github.com/markddavidoff/bdd-workflow",
+  "repository": "https://github.com/markddavidoff/bdd-workflow",
+  "license": "LicenseRef-source-available",
+  "keywords": [
+    "bdd",
+    "gherkin",
+    "playwright",
+    "testing",
+    "tdd"
+  ]
+}
